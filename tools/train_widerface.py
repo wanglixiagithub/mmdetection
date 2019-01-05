@@ -13,7 +13,7 @@ from mmdet.models import build_detector
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
-    parser.add_argument('--config', default='configs/coco_faster_rcnn_r50_fpn_1x.py',help='train config file path')
+    parser.add_argument('--config', default='configs/widerface_faster_rcnn_r50_fpn_1x.py',help='train config file path')
     parser.add_argument('--work_dir', help='the dir to save logs and models')
     parser.add_argument(
         '--validate',
@@ -22,7 +22,7 @@ def parse_args():
     parser.add_argument(
         '--gpus',
         type=int,
-        default=2,
+        default=1,
         help='number of gpus to use '
         '(only applicable to non-distributed training)')
     parser.add_argument('--seed', type=int, default=None, help='random seed')

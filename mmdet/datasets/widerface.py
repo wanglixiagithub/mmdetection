@@ -16,6 +16,9 @@ class WiderFaceDataset(CustomDataset):
             if lines[i].strip()[-3:] == 'jpg':
                 img = {}
                 img['filename'] = lines[i].strip()
+                img['width'] = int(lines[i+1].strip())
+                img['height'] = int(lines[i+2].strip())
+                i+=2
                 bbnum = int(lines[i+1])
                 i = i+1
                 img['ann'] = {}
@@ -24,12 +27,12 @@ class WiderFaceDataset(CustomDataset):
                     if bbx[-3] == 0:
                         if 'bboxes' in img['ann']:
                             img['ann']['bboxes'].append([bbx[0], bbx[1], bbx[0] + bbx[2] - 1, bbx[1] + bbx[3] - 1])
-                            img['ann']['labels'].append([1])
+                            img['ann']['labels'].append(1)
                         else:
                             img['ann']['bboxes'] = []
                             img['ann']['labels'] = []
                             img['ann']['bboxes'].append([bbx[0], bbx[1], bbx[0]+bbx[2]-1, bbx[1]+bbx[3]-1])
-                            img['ann']['labels'].append([1])
+                            img['ann']['labels'].append(1)
                     else:
                         if 'bboxes_ignore' in img['ann']:
                             if 'bboxes' in img['ann']:
